@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="description" content="Track your tasks with a fitness-app inspired interface">
+  <title>Task Tracker</title>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlRhc2sgVHJhY2tlciIsCiAgInNob3J0X25hbWUiOiAiVGFza3MiLAogICJkZXNjcmlwdGlvbiI6ICJUcmFjayB5b3VyIHRhc2tzIHdpdGggYSBmaXRuZXNzLWFwcCBpbnNwaXJlZCBpbnRlcmZhY2UiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBmMTcyYSIsCiAgInRoZW1lX2NvbG9yIjogIiM3YzNhZWQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXhPVElpSUdobGFXZG9kRDBpTVRreUlqNDhjbVZqZENCM2FXUjBhRDBpTVRreUlpQm9aV2xuYUhROUlqRTVNaUlnWm1sc2JEMGlJemRqTTJGbFpDSXZQanh3WVhSb0lHUTlJazB4TURBZ05UWkRNVEF3SURJM0xqWWdPRGN1TmlBeElEYzBJREVnU0RFdU1qTkRMamtnTVNBdU1EUWdNamt1TnlBdU1EUWdOak1nUzJNd0lETXlMamtnTWpjdU5pQTJNaUEyTXlBMk1sTXhPVEV1T1RZZ09EY3VOaUF4T1RJZ05qWldNVE0yWXkwdU1EUWdNekl1T1MwME15QXpNaTQ1TFRZeklETXlTRFkwWXkweU1DNHlJREF0TXpZdU5TMHhOaTQyTFRNMkxqVXRNemN1TTFZeU9XTXdMVEl3TGpJZ01UWXVNeTB6Tmk0MUlETTJMalV0TXpZdU5VZ3hNamhqTWpBdU1pQXdJRE0yTGpVZ0lERTJMak1nTXpZdU5TQXpOeTR6VmpFeE1ITXRORE15TGpNZ05ESTRMalF0TnpZNElEYzJPRm9pSUdacGJHdzlJaU5tWm1ZaUx6NDhMM04yWno0PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0kxTVRJaUlHaGxhV2RvZEQwaU5URXlJajQ4Y21WamRDQjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ1ptbHNiRDBpSXpkak0yRmxaQ0l2UGp4d1lYUm9JR1E5SWsweU5qZ2dNVFV3UTJJNE9DNHhJRFUzTGpNZ05UVXVOaUF5TGpjZ01UazRMamNnTWk0M1NETXVNelEwUXk0NElESTNMamNnTWk0eklEVTRMamNnTWk0eklERTJPUzQxVmpNMk5tTXRMakVnT0RndU55MHhNVFl1TmlBNE9DNDNMVEUyT1M0MUlEZzRMamRJTVRjMGxqRXhPQzQxSURrNExqY2dPVGd1TnlBNU9DNDNTRE0wTUdNMU5DNHhJREFnT1RndU55QXdJRGs0TGpjZ09UZ3VOelkyTWpOak1DQTFOQzR4SURRMExqWWdPVGd1TnlBNU9DNDNJRGs0TGpkSU16UTBZemt5TGpJdU1pQXhNRFl1TWkwME5DNDNJREUyTUM0MUxUazRMamNnTVRrNExqY3RNVGs0TGpkYU1qa3lJRE0yTjBNeU9USXROakF1TmlBeU1UY3VOeTB4TURBdU55QXhPRGd0TVRBd0xqZGFJaUJtYVd4c1BTSWpabVptSWk4K1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+  
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iIzdjM2FlZCIvPjxwYXRoIGQ9Ik0xMDAgNTZDMTAwIDI3LjYgODcuNiAxIDc0IDFIMS4yM0MuOSAxIC4wNCAyOS43IC4wNCA2MyBLYzAgMzIuOSAyNy42IDYyIDYzIDYyUzE5MS45NiA4Ny42IDE5MiA2NlYxMzZjLS4wNCAzMi45LTQzIDMyLjktNjMgMzJINjRjLTIwLjIgMC0zNi41LTE2LjYtMzYuNS0zNy4zVjI5YzAtMjAuMiAxNi4zLTM2LjUgMzYuNS0zNi41SDEyOGMyMC4yIDAgMzYuNSAgMTYuMyAzNi41IDM3LjNWMTEwcy00MzIuMyA0MjguNC03NjggNzY4WiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- React & ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Babel Standalone for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(124, 58, 237, 0.5);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(124, 58, 237, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const { CheckCircle2, Circle, Plus, X, Calendar, Zap, Target, Bell } = lucide;
+
+    const TaskTracker = () => {
+      const [tasks, setTasks] = useState([]);
+      const [newTask, setNewTask] = useState('');
+      const [selectedCategory, setSelectedCategory] = useState('personal');
+      const [deadline, setDeadline] = useState('');
+      const [filter, setFilter] = useState('all');
+      const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+
+      const categories = [
+        { id: 'clients', label: 'Clients', color: 'bg-blue-500' },
+        { id: 'projects', label: 'Projects', color: 'bg-purple-500' },
+        { id: 'personal', label: 'Personal', color: 'bg-green-500' }
+      ];
+
+      // Load tasks from localStorage
+      useEffect(() => {
+        const stored = localStorage.getItem('taskTrackerData');
+        if (stored) {
+          setTasks(JSON.parse(stored));
+        }
+
+        // Check notification permission
+        if ('Notification' in window && Notification.permission === 'granted') {
+          setNotificationsEnabled(true);
+        }
+      }, []);
+
+      // Save tasks to localStorage
+      useEffect(() => {
+        localStorage.setItem('taskTrackerData', JSON.stringify(tasks));
+        checkDueTasksForNotification();
+      }, [tasks]);
+
+      const requestNotificationPermission = async () => {
+        if ('Notification' in window) {
+          const permission = await Notification.requestPermission();
+          setNotificationsEnabled(permission === 'granted');
+        }
+      };
+
+      const checkDueTasksForNotification = () => {
+        if (!notificationsEnabled) return;
+
+        const now = new Date();
+        const today = now.toISOString().split('T')[0];
+
+        tasks.forEach(task => {
+          if (!task.completed && task.deadline === today && !task.notified) {
+            new Notification('Task Due Today! 🎯', {
+              body: `"${task.text}" is due today`,
+              icon: '✅'
+            });
+            
+            // Mark as notified
+            setTasks(prev => prev.map(t => 
+              t.id === task.id ? { ...t, notified: true } : t
+            ));
+          }
+        });
+      };
+
+      const addTask = () => {
+        if (!newTask.trim()) return;
+
+        const task = {
+          id: Date.now(),
+          text: newTask,
+          category: selectedCategory,
+          deadline: deadline || null,
+          completed: false,
+          createdAt: new Date().toISOString(),
+          notified: false
+        };
+
+        setTasks([task, ...tasks]);
+        setNewTask('');
+        setDeadline('');
+      };
+
+      const toggleTask = (id) => {
+        setTasks(tasks.map(task => 
+          task.id === id ? { ...task, completed: !task.completed } : task
+        ));
+      };
+
+      const deleteTask = (id) => {
+        setTasks(tasks.filter(task => task.id !== id));
+      };
+
+      const getStreak = () => {
+        const today = new Date().toISOString().split('T')[0];
+        const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+        
+        const completedToday = tasks.some(t => 
+          t.completed && t.createdAt.split('T')[0] === today
+        );
+        const completedYesterday = tasks.some(t => 
+          t.completed && t.createdAt.split('T')[0] === yesterday
+        );
+
+        return completedToday ? (completedYesterday ? '2+' : '1') : '0';
+      };
+
+      const getStats = () => {
+        const total = tasks.length;
+        const completed = tasks.filter(t => t.completed).length;
+        const pending = total - completed;
+        const completionRate = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+        return { total, completed, pending, completionRate };
+      };
+
+      const filteredTasks = tasks.filter(task => {
+        if (filter === 'all') return true;
+        if (filter === 'active') return !task.completed;
+        if (filter === 'completed') return task.completed;
+        return task.category === filter;
+      });
+
+      const stats = getStats();
+      const streak = getStreak();
+
+      const isOverdue = (deadline) => {
+        if (!deadline) return false;
+        return new Date(deadline) < new Date() && new Date(deadline).toISOString().split('T')[0] !== new Date().toISOString().split('T')[0];
+      };
+
+      const isDueToday = (deadline) => {
+        if (!deadline) return false;
+        return deadline === new Date().toISOString().split('T')[0];
+      };
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-8 pt-8">
+              <h1 className="text-4xl font-bold text-white mb-2">Task Tracker</h1>
+              <p className="text-purple-200">Your daily progress dashboard</p>
+            </div>
+
+            {/* Stats Cards - Fitness App Style */}
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-center border border-white/20">
+                <div className="text-3xl font-bold text-white mb-1">{stats.completionRate}%</div>
+                <div className="text-purple-200 text-sm">Completion</div>
+                <div className="mt-2 bg-white/20 rounded-full h-2 overflow-hidden">
+                  <div 
+                    className="bg-gradient-to-r from-green-400 to-emerald-500 h-full transition-all duration-500"
+                    style={{ width: `${stats.completionRate}%` }}
+                  />
+                </div>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-center border border-white/20">
+                <div className="flex items-center justify-center mb-1">
+                  <Zap className="text-yellow-400 mr-1" size={24} />
+                  <div className="text-3xl font-bold text-white">{streak}</div>
+                </div>
+                <div className="text-purple-200 text-sm">Day Streak</div>
+              </div>
+
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-center border border-white/20">
+                <div className="text-3xl font-bold text-white mb-1">{stats.pending}</div>
+                <div className="text-purple-200 text-sm">Pending</div>
+                <div className="text-xs text-purple-300 mt-1">{stats.completed} completed</div>
+              </div>
+            </div>
+
+            {/* Notification Toggle */}
+            {!notificationsEnabled && (
+              <div className="bg-amber-500/20 border border-amber-500/50 rounded-xl p-4 mb-6 flex items-center justify-between">
+                <div className="flex items-center">
+                  <Bell className="text-amber-300 mr-3" size={20} />
+                  <div>
+                    <div className="text-white font-medium">Enable Notifications</div>
+                    <div className="text-amber-200 text-sm">Get reminded of due tasks</div>
+                  </div>
+                </div>
+                <button
+                  onClick={requestNotificationPermission}
+                  className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                >
+                  Enable
+                </button>
+              </div>
+            )}
+
+            {/* Add Task */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-6 border border-white/20">
+              <div className="flex gap-3 mb-4">
+                <input
+                  type="text"
+                  value={newTask}
+                  onChange={(e) => setNewTask(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && addTask()}
+                  placeholder="Add a new task..."
+                  className="flex-1 bg-white/20 border border-white/30 rounded-xl px-4 py-3 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                />
+                <button
+                  onClick={addTask}
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 rounded-xl font-medium transition-all flex items-center gap-2"
+                >
+                  <Plus size={20} />
+                  Add
+                </button>
+              </div>
+
+              <div className="flex gap-3 flex-wrap">
+                <div className="flex gap-2">
+                  {categories.map(cat => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setSelectedCategory(cat.id)}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                        selectedCategory === cat.id
+                          ? `${cat.color} text-white`
+                          : 'bg-white/20 text-purple-200 hover:bg-white/30'
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2 bg-white/20 rounded-lg px-3 py-2">
+                  <Calendar size={18} className="text-purple-200" />
+                  <input
+                    type="date"
+                    value={deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                    className="bg-transparent text-white focus:outline-none cursor-pointer"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Filters */}
+            <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+              {['all', 'active', 'completed', ...categories.map(c => c.id)].map(f => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all ${
+                    filter === f
+                      ? 'bg-white text-purple-900'
+                      : 'bg-white/20 text-white hover:bg-white/30'
+                  }`}
+                >
+                  {f.charAt(0).toUpperCase() + f.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            {/* Tasks List */}
+            <div className="space-y-3">
+              {filteredTasks.length === 0 ? (
+                <div className="text-center py-16">
+                  <Target className="mx-auto mb-4 text-purple-300" size={48} />
+                  <p className="text-purple-200 text-lg">No tasks yet. Add one to get started! 🚀</p>
+                </div>
+              ) : (
+                filteredTasks.map(task => {
+                  const category = categories.find(c => c.id === task.category);
+                  const overdue = isOverdue(task.deadline);
+                  const dueToday = isDueToday(task.deadline);
+
+                  return (
+                    <div
+                      key={task.id}
+                      className={`bg-white/10 backdrop-blur-lg rounded-xl p-4 border transition-all ${
+                        task.completed
+                          ? 'border-white/10 opacity-60'
+                          : 'border-white/20 hover:bg-white/15'
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <button
+                          onClick={() => toggleTask(task.id)}
+                          className="mt-1 transition-transform hover:scale-110"
+                        >
+                          {task.completed ? (
+                            <CheckCircle2 className="text-green-400" size={24} />
+                          ) : (
+                            <Circle className="text-purple-300" size={24} />
+                          )}
+                        </button>
+
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className={`${category.color} text-white text-xs px-2 py-1 rounded-full font-medium`}>
+                              {category.label}
+                            </span>
+                            {task.deadline && (
+                              <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                                overdue
+                                  ? 'bg-red-500/30 text-red-200'
+                                  : dueToday
+                                  ? 'bg-amber-500/30 text-amber-200'
+                                  : 'bg-blue-500/30 text-blue-200'
+                              }`}>
+                                {overdue ? '⚠️ Overdue' : dueToday ? '📅 Today' : task.deadline}
+                              </span>
+                            )}
+                          </div>
+                          <p className={`text-white ${task.completed ? 'line-through' : ''}`}>
+                            {task.text}
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={() => deleteTask(task.id)}
+                          className="text-red-300 hover:text-red-200 transition-colors p-1"
+                        >
+                          <X size={20} />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="text-center mt-12 pb-8">
+              <p className="text-purple-300 text-sm">
+                💪 Keep crushing your goals • {stats.total} total tasks tracked
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Render the app
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<TaskTracker />);
+
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => console.log('SW registered'))
+          .catch(err => console.log('SW registration failed'));
+      });
+    }
+  </script>
+</body>
+</html>
